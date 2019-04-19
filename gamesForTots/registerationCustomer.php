@@ -1,5 +1,10 @@
 <?php
-	
+
+//AJITH KEERIKKATTIL 4/19
+
+//set up a session
+session_start();
+
 	//PHP code to fetch customer data from the registeration.html page and add it to the mySQL database
 	if (isset($_POST['FirstName'])) 
 		{
@@ -52,7 +57,9 @@
 			
 			if (mysqli_query($dbConnection, $sqlStmt)) 
 				{
-					echo "You have been registered successfully";
+					$_SESSION['email'] = $email; //Set the email as a session variable
+					$_SESSION['password'] = $pass; //Set the pasword as a session variable
+					echo 'Success';
 				} 
 			else
 				{
