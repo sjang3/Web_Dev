@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 
 <html>
@@ -31,7 +30,7 @@ session_start();
 </html>
 
 <?php
-
+//function that gets the transaction details from paypal and display it in paymentConfirmation.php
 function pdtreturn()
 {
 	$pp_hostname = "www.sandbox.paypal.com"; 
@@ -40,7 +39,7 @@ function pdtreturn()
 	$req = 'cmd=_notify-synch';
   
 	$tx_token = $_GET['tx']; //get the transaction code from paypal AUTO-RETURN URL
-	$auth_token = "1xlkQDMogFcRJgf5pCsr--tMq9c6c9mmN9Gn_Y5GbBl1t5gqwiRnUCWfs5W"; //enter your merchant accounts access token
+	$auth_token = ""; //enter your merchant accounts access token
 	$req .= "&tx=$tx_token&at=$auth_token";
   
 	$ch = curl_init();
