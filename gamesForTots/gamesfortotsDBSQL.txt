@@ -1,4 +1,8 @@
 
+//Database Name
+Database: `gamesfortotsDB`
+
+
 //Table used by the registeration.php 
 CREATE TABLE `customer` (
   `customerID` int(10) NOT NULL AUTO_INCREMENT,
