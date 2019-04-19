@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<!-- Test URL: http://localhost/gamesForTots/registeration.html -->
+		<!-- New customer regsiteration HTML form -->
+	</head>
+	<body>
+
+	<h3>New User Registeration</h3>
+	<br/>
+		<form id="userRegisteration">
+			<!--User FirstName -->
+			<label for= "FirstName">First Name: </label>
+			<input type="text" name="FirstName">
+		
+			<!--User LastName -->
+			<label for= "LastName">Last Name: </label>
+			<input type="text" name="LastName">
+		
+			<!--User Age -->
+			<label for= "Age">Age: </label>
+			<input type="text" name="Age">
+		
+			<!--User Email -->
+			<label for= "email" >Email: </label>
+			<input type="text" size="40" class="emailBox" name="email">
+		
+			<!--User Password -->
+			<label for= "passwordField">Password (8 characters minimum): </label>
+			<input name="passwordField" required="" type="password">
+		
+			<!--User Phone Number -->
+			<label for= "phoneNumber">Phone Number: </label>
+			<input type="text" name="phoneNumber">
+		
+			<button type="submit" name="submit" value="REGISTER">REGISTER</button> &nbsp;
+		</form>
+		
+	<!--print the response of the server registeration inside the div-->
+	<br/>
+	<div class= "return" id="registerationStatus"> </div>
+	
+	<!-- JavaScript to display the server response without having to reload the page -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+	 <script>
+		$("#userRegisteration").submit(function(event)
+			{
+				event.preventDefault(); //prevent default action 
+				var post_url = "registerationCustomer.php"; //get form action url
+				var form_data = $(this).serialize(); //Encode form elements for submission
+	
+				$.post( post_url, form_data, function(response, status) 
+					{
+	  					$("#registerationStatus").html( response );	
+	  					//setTimeout(function() { window.location.href = "activate.php"; }, 5000);
+					}).fail(function(err, status) 
+						{
+ 					 		$("#registerationStatus").html( err );
+						});
+			});
+    </script>
+    
+	</body>
+</html>
