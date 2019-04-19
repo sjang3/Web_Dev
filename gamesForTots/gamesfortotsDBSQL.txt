@@ -1,11 +1,12 @@
 
 //Table used by the registeration.php 
-CREATE TABLE customer (
- customerID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
- FirstName varchar(25),
- LastName varchar(25),
- Age int(4),
- email varchar(40),
- passwordFiled varchar(20),
- phoneNumber bigint(10)
-);
+CREATE TABLE `customer` (
+  `customerID` int(10) NOT NULL AUTO_INCREMENT,
+  `FirstName` varchar(40) NOT NULL,
+  `LastName` varchar(40) NOT NULL,
+  `Age` int(2) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `passwordFiled` varchar(40) NOT NULL,
+  `phoneNumber` bigint(10) NOT NULL,
+  PRIMARY KEY (`customerID`)
+)
