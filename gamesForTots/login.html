@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<!-- Test URL: http://localhost/gamesForTots/login.html -->
+		<!-- Customer login HTML form -->
+	</head>
+	<body>
+
+	<h3>Customer Login</h3>
+	<br/>
+		<form id="userLogin">		
+			<!--User Email -->
+			<label for= "email" >Email: </label>
+			<input type="text" size="40" class="emailBox" name="email">
+		
+			<!--User Password -->
+			<label for= "passwordField">Password: </label>
+			<input name="passwordField" required="" type="password">
+
+			<button type="submit" name="submit" value="LOGIN">LOGIN</button> &nbsp;
+		</form>
+		
+	<!--print the response of the server login inside the div-->
+	<br/>
+	<div class= "return" id="loginStatus"> </div>
+	
+	<!-- JavaScript to display the server response without having to reload the page -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+	 <script>
+		$("#userLogin").submit(function(event)
+			{
+				event.preventDefault(); //prevent default action 
+				var post_url = "loginCustomer.php"; //get form action url
+				var form_data = $(this).serialize(); //Encode form elements for submission
+	
+				$.post( post_url, form_data, function(response, status) 
+					{
+	  				//	$("#loginStatus").html( response );	
+	  					var result = $.trim(response); var myVar = "Redirecting to home page in 5 seconds...";
+    					if(result==="Success")
+    						{
+    							$("#loginStatus").html( myVar );
+        						setTimeout(function() { window.location.href = "homePostLogin.php"; }, 5000); //if login is success, wait 5 seconds, then open the post login page
+        					}
+        				else
+        					{
+        						$("#loginStatus").html( response );	 //If login is failure, display login failure in the login page
+        					}
+	  					//setTimeout(function() { window.location.href = "homePostLogin.php"; }, 5000); 
+					}).fail(function(err, status) 
+						{
+ 					 		$("#loginStatus").html( err );
+						});
+			});
+    </script>
+    
+	</body>
+</html>

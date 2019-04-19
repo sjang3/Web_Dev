@@ -51,7 +51,7 @@
 				$.post( post_url, form_data, function(response, status) 
 					{
 	  					$("#registerationStatus").html( response );	
-	  					//setTimeout(function() { window.location.href = "activate.php"; }, 5000);
+	  					setTimeout(function() { window.location.href = "homePostLogin.php"; }, 5000); //If successful wait 5 seconds and then open the post-login home page.
 					}).fail(function(err, status) 
 						{
  					 		$("#registerationStatus").html( err );
