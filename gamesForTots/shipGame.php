@@ -3,7 +3,10 @@ session_start();
 ?>
 
 <html>
-	<head> </head>
+	<head> 
+		<style>
+		</style>
+	</head>
 	<body>
 		
 		<div clas = "logo">
@@ -49,7 +52,45 @@ session_start();
 			<p>Your browser does not support iframes.</p> ></iframe>
 			
 		<!-- embedd the rating system here -->
+		<div class='ratingStar'>
+			<form id="rateSubmit">
+				Rate this game: 
+					<select name="ratingNumber">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+			
+				<input type="hidden" name="gameName" id="gameName" value="ShipGame">
+				<button type="submit" name="submit" value="rate">RATE</button> &nbsp;
+			</form> 
 		</div>
+			
+		 <!-- JavaScript to display the server response without having to reload the page -->
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+		 <script>
+			$("#rateSubmit").submit(function(event)
+				{
+					event.preventDefault(); //prevent default action 
+					var post_url = "saveRating.php"; //get form action url
+					var form_data = $(this).serialize(); //Encode form elements for submission
+	
+					$.post( post_url, form_data, function(response, status) 
+						{
+							$("#response").html( response );	
+							
+						}).fail(function(err, status) 
+							{
+								$("#response").html( err );
+							});
+				});
+		</script>
+		
+		Average Rating:
+		<div id = "response"> </div>
+		<br/>
 		
 		<!-- Twitter share button -->
 		<div id="twitter_share">
