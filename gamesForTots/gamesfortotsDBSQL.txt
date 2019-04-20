@@ -9,3 +9,12 @@ CREATE TABLE customer (
  passwordFiled varchar(20),
  phoneNumber bigint(10)
 );
+
+
+//Table used by the game rating
+CREATE TABLE `gameRating` (
+  `ratingID` int(10) NOT NULL AUTO_INCREMENT,
+  `gameName` varchar(40) NOT NULL,
+  `ratingNumer` int(10) NOT NULL,
+   PRIMARY KEY (`ratingID`)
+);
