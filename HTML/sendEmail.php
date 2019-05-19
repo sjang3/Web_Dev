@@ -20,44 +20,32 @@ email($email, $message);
 //Function to send the message to customer service
 function email($email, $message)
 	{
-		//import the dependency for the email client
-		require '../vendor/autoload.php';
+		$text_body = "Hello customer service representative,\n\n\n\n";
+		$text_body .= "A customer has sent you a messaege:\n\n\n\n";
+		$text_body .= "Customer Email: " . $email . "\n\n\n\n"; 
+		$text_body .= "Customer Message: " . $message . "\n\n\n\n"; 
+		$text_body .= "Please address the customer request in a timely manner.";
 
-		//Create a new PHPMailer instance
-		$mail = new PHPMailer;
+		$from = "admin@bookbarter.us";
+		//$to = $from;
+		$to= "test@yopmail.com";
+		
+		$message = $text_body;
+		$subject = "Message from customer " . $email;
+		$to = $email;
+		$headers = "MIME-VERSION: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		$headers = "From : <$from> \r\n";
 
-		//Tell PHPMailer to use SMTP
-		$mail->isSMTP();
+if (mail($to, $subject, $message, $headers))
+    {
+        echo "Success";
+    }
+else 
+    {
+        echo "Failure";
+    }
 
-		//Set the hostname of the mail server
-		$mail->Host = 'smtp.gmail.com';
-		$mail->Port = 587;
-		$mail->SMTPSecure = 'tls';
-		$mail->SMTPAuth = true;
-
-		$mail->Username = "mtstCloudExe@gmail.com"; //Username to use for SMTP authentication - use full email address for gmail
-		$mail->Password = "Test123#"; //Password to use for SMTP authentication
-
-		$mail->setFrom('mtstCloudExe@gmail.com'); //Set who the message is to be sent from
-		$mail->addAddress('mtstCloudExe@gmail.com'); //Set who the message is to be sent to
-		$mail->Subject = 'Customer Service Message'; //Set the subject line
-
-		$text_body  = "Hello customer service, \n\n\n\n";
-		$text_body .= "See below a message send by one of our customers.\n\n\n\n";
-		$text_body .= "Customer email address: " . $email . "\n\n\n\n";
-		$text_body .=  $message . "\n\n\n\n";
-		$text_body .= "Automated email system";
-
-		$mail->Body = $text_body;
-
-		if ($mail->send()) 
-			{
-    			echo " Message sent succesfully!";
-			}
-		else
-			{
-				echo " Unable to send the message. Please try again!";
-			}
 			
 	}
 ?>
