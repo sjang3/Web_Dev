@@ -44,10 +44,10 @@ session_start();
 	function addCustomertoDB($fName, $lName, $age, $email, $pass, $phoneNumber)
 		{
 			// mySQL server parameters
-			$servername = "localhost";
-			$username = "root";
-			$password = "";
-			$db = "gamesfortotsDB";
+            $servername = "localhost";
+            $username = "ajikee1";
+            $password = "ranjithajith";
+            $db = "gamesfortotos";
 			
 			//create the connection
 			$dbConnection = mysqli_connect($servername, $username, $password, $db);
