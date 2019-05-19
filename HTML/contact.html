@@ -11,7 +11,7 @@
 ================================================== -->
 
 <meta charset="utf-8">
-<title>Gamefortots.com</title>
+<title>Freebix Responsive Site Template</title>
 <meta name="description" content="Place to put your description text">
 <meta name="author" content="">
 <!--[if lt IE 9]>
@@ -34,7 +34,7 @@
 <!-- Favicons ==================================================
 ================================================== -->
 
-<link rel="shortcut icon" href="images/logo.png">
+<link rel="shortcut icon" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
@@ -125,26 +125,27 @@
     <div id="contactForm">
       <h3>Contact us</h3>
       <div class="sepContainer"></div>
-      <form action="process.php" method="post" id="contact_form">
-        <div class="name">
-          <label for="name">Your Name:</label>
-          <p> Please enter your full name</p>
-          <input id=name name=name type=text placeholder="e.g. Mr. John Smith" required />
-        </div>
+      <form id="contact">
         <div class="email">
           <label for="email">Your Email:</label>
           <p> Please enter your email address</p>
-          <input id=email name=email type=email placeholder="example@domain.com" required />
+          <input id=email name=customerEmail type=email placeholder="example@domain.com" required />
         </div>
         <div class="message">
           <label for="message">Your Message:</label>
           <p> Please enter your question</p>
-          <textarea id=message name=message rows=6 cols=10 required></textarea>
+          <textarea id=message name=comments rows=6 cols=10 required></textarea>
         </div>
         <div id="loader">
           <input type="submit" value="Submit" />
         </div>
       </form>
+      		
+		 <!-- JavaScript to display the server response without having to reload the page -->
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+		 
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+        <script src="sweetalert2.all.min.js"></script>
 		<script>
 			$("#contact").submit(function(event)
 				{
@@ -152,12 +153,25 @@
 					var post_url = "sendEmail.php"; //get form action url
 					var form_data = $(this).serialize(); //Encode form elements for submission
 	
-					$.post( post_url, form_data, function(response, status) 
+					$.post( post_url, form_data, function(response) 
 						{
-							$("#messageStatus").html( response );	
-						}).fail(function(err, status) 
-							{
-								$("#messageStatus").html( err );
+							var result = $.trim(response);
+							    if (result==="Success")
+    						        {
+    						            	Swal.fire(
+  												'GamesforTots says',
+  												'Thank you for messaging us. A representative will reach out to you soon!',
+  												'success'
+											)
+    						        }
+    						    else
+    						        {
+    						            	Swal.fire(
+  												'GamesforTots says',
+  												'Error sending email!.Please try again',
+  												'warning'
+											)
+    						        }
 							});
 				});
 		</script>
