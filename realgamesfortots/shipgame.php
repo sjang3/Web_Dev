@@ -1,33 +1,70 @@
 <?php
-
 session_start();
+$_SESSION['customerName'];
 
-$email = $_SESSION["email"];
+if (isset($_SESSION['email'])) 
+  {
+      $loginEmail = $_SESSION['email'];
+  }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "gamesfortotsDB";
-  
-dbConnection = mysqli_connect($servername, $username, $password, $db);
- 
-//get the password associated with the email
-$sql = "SELECT Age FROM customer WHERE email ='$email' LIMIT 1";
+$customerName = getName($loginEmail); //get the users firstname and lastname using his email address
+$nameofGame = "shipgame";
+insertHistory($loginEmail, $nameofGame);
+//function to get customers first name and last name based on his email address
+function getName($loginEmail)
+  {
+        $servername = "localhost";
+        $username = "ajikee1";
+        $password = "ranjithajith";
+        $db = "gamesfortotos";
+    
+      //set the connection
+      $dbConnection = mysqli_connect($servername, $username, $password, $db);
+    
+    
+      $stmt = "SELECT FirstName, LastName FROM customer WHERE email='$loginEmail'";
+    
+      //execute the query and assign the result
+      $result = mysqli_query($dbConnection, $stmt);
+    
+      if (mysqli_num_rows($result) > 0) 
+      {
+          while ($row = mysqli_fetch_array($result)) 
+            {
+                $_SESSION['customerName'] = $row['FirstName']. ' ' . $row['LastName'];
+            }
+        
+            mysqli_free_result($result);
+            mysqli_close($dbConnection);
+      }
+      
+      return $_SESSION['customerName'];
+  }
 
-$result = mysqli_query($dbConnection, $sql);
+function insertHistory($loginEmail, $gameName) 
+  {
 
-while ($row = $result->fetch_assoc()) 
-			{
-    			$passFromDB   = $row['Age'];
+    $servername = "localhost";
+    $username = "ajikee1";
+    $password = "ranjithajith";
+    $db = "gamesfortotos";
 
-    			if (($passFromDB < 18)) 
-    				{
-    					echo "<script>alert('You need to ba 18 or older!!');history.go(-1);</script>";
-    				}
-    			
-			}
+    //set the connection
+    $dbConnection = mysqli_connect($servername, $username, $password, $db);
 
-
+    $stmt = "INSERT INTO History(email, gameName, view) VALUES('$loginEmail', '$gameName', '1')";
+    //execute the query and assign the result
+      $result = mysqli_query($dbConnection, $stmt);
+    
+      if (mysqli_query($dbConnection, $stmt)) 
+        {
+          //echo 'Success';
+        } 
+      else
+        {
+          //echo "History not logged";
+        }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -83,13 +120,15 @@ while ($row = $result->fetch_assoc())
   <div class="container"> 
     <!-- Header | Logo, Menu
 		================================================== -->
-    <div class="logo"><a href="indexPost.php"><img src="images/logo.png" alt="" /></a></div>
+    <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" /></a></div>
     <div class="mainmenu">
       <div id="mainmenu">
         <ul class="sf-menu">
-          <li><a href="indexPost.php" id="visited">Home</a></li>
+          <li><a href="index.html" id="visited">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.html">Games</a></li>          
+          <li><a href="portfolio.php">Games</a>
+           
+          </li>          
           <li><a href="contact.html">Contact</a></li>
 		  <li><a href="logout.php">Logout</a></li>
         </ul>
@@ -109,8 +148,8 @@ while ($row = $result->fetch_assoc())
 <div class="breadcrumbs">
   <div class="container">
     <header>
-      <h3>Doom Runer</h3>
-      <p> Run for your life </p>
+      <h3>Ship game</h3>
+      <p> *One Man. One Ship. In Space.* </p>
     </header>
   </div>
   <!-- container ends here -->
@@ -121,8 +160,8 @@ while ($row = $result->fetch_assoc())
 ================================================== -->
 <div class="container">
   <section class="slider" align="middle">
-    <iframe src="game/index.html"
-" name="game" width="800" height="600" frameborder="0" scrolling="no" text-align: center align="middle">
+    <iframe src="game/ShipGameShooter.html"
+" name="game" width="800" height="500" frameborder="0" scrolling="no" text-align: center align="middle">
             <p>Your browser does not support iframes.</p> >
         </iframe>
     <!-- flexslider ends here --> 
@@ -142,7 +181,7 @@ while ($row = $result->fetch_assoc())
                     <option value="5">5</option>
                 </select>
 
-                <input type="hidden" name="gameName" id="gameName" value="DoomRunner">
+                <input type="hidden" name="gameName" id="gameName" value="ShipGame">
                 <button type="submit" name="submit" value="rate">RATE</button> &nbsp;
             </form>
         </div>

@@ -3,42 +3,68 @@ session_start();
 $_SESSION['customerName'];
 
 if (isset($_SESSION['email'])) 
-	{
-    	$loginEmail = $_SESSION['email'];
-	}
+  {
+      $loginEmail = $_SESSION['email'];
+  }
 
 $customerName = getName($loginEmail); //get the users firstname and lastname using his email address
-
+$nameofGame = "neonbubble";
+insertHistory($loginEmail, $nameofGame);
 //function to get customers first name and last name based on his email address
 function getName($loginEmail)
-	{
+  {
         $servername = "localhost";
         $username = "ajikee1";
         $password = "ranjithajith";
         $db = "gamesfortotos";
     
-    	//set the connection
-    	$dbConnection = mysqli_connect($servername, $username, $password, $db);
+      //set the connection
+      $dbConnection = mysqli_connect($servername, $username, $password, $db);
     
     
-    	$stmt = "SELECT FirstName, LastName FROM customer WHERE email='$loginEmail'";
+      $stmt = "SELECT FirstName, LastName FROM customer WHERE email='$loginEmail'";
     
-    	//execute the query and assign the result
-    	$result = mysqli_query($dbConnection, $stmt);
+      //execute the query and assign the result
+      $result = mysqli_query($dbConnection, $stmt);
     
-    	if (mysqli_num_rows($result) > 0) 
-    	{
-        	while ($row = mysqli_fetch_array($result)) 
-        		{
-            		$_SESSION['customerName'] = $row['FirstName']. ' ' . $row['LastName'];
-        		}
+      if (mysqli_num_rows($result) > 0) 
+      {
+          while ($row = mysqli_fetch_array($result)) 
+            {
+                $_SESSION['customerName'] = $row['FirstName']. ' ' . $row['LastName'];
+            }
         
-        		mysqli_free_result($result);
-        		mysqli_close($dbConnection);
-    	}
-    	
-    	return $_SESSION['customerName'];
-	}
+            mysqli_free_result($result);
+            mysqli_close($dbConnection);
+      }
+      
+      return $_SESSION['customerName'];
+  }
+
+function insertHistory($loginEmail, $gameName) 
+  {
+
+    $servername = "localhost";
+    $username = "ajikee1";
+    $password = "ranjithajith";
+    $db = "gamesfortotos";
+
+    //set the connection
+    $dbConnection = mysqli_connect($servername, $username, $password, $db);
+
+    $stmt = "INSERT INTO History(email, gameName, view) VALUES('$loginEmail', '$gameName', '1')";
+    //execute the query and assign the result
+      $result = mysqli_query($dbConnection, $stmt);
+    
+      if (mysqli_query($dbConnection, $stmt)) 
+        {
+          //echo 'Success';
+        } 
+      else
+        {
+          //echo "History not logged";
+        }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +81,7 @@ function getName($loginEmail)
 
 <meta charset="utf-8">
 <title>Gamefortots.com</title>
-<meta name="description" content="Game for tots">
+<meta name="description" content="Place to put your description text">
 <meta name="author" content="">
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -86,7 +112,7 @@ function getName($loginEmail)
 ================================================== -->
 <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body> 
 
 <!--Content Part ==================================================
 ================================================== -->
@@ -94,19 +120,17 @@ function getName($loginEmail)
   <div class="container"> 
     <!-- Header | Logo, Menu
 		================================================== -->
-    <div class="logo"><a href="indexPost.php"><img src="images/logo.png" alt="" /></a></div>
+    <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" /></a></div>
     <div class="mainmenu">
       <div id="mainmenu">
         <ul class="sf-menu">
           <li><a href="indexPost.php" id="visited">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.php">Games</a>
-          </li>          
+          <li><a href="portfolio.html">Games</a></li>          
           <li><a href="contact.html">Contact</a></li>
-		  <li><a href="index.html">LogOut</a></li> <!-- this is linked -->
-		  <li><a href ="">Hello,  <?php echo $customerName ?></a></li>
+		  <li><a href="logout.php">Logout</a></li>
         </ul>
-    </div>
+      </div>
       <!-- mainmenu ends here --> 
       
       <!-- Responsive Menu -->
@@ -117,98 +141,94 @@ function getName($loginEmail)
   <!-- container ends here --> 
 </div>
 <!-- header ends here --> 
-<!-- Slider ==================================================
+<!--Breadcrumbs ==================================================
 ================================================== -->
-<section class="slider">
-  <div class="flexslider">
-    <ul class="slides">
-      <li> <a href="doomrunner.php"><img src="images/portfolio/img1.png" alt="" width="100%" height="400"/></a>
-      </li>
-      <li> <a href="shipgame.php"><img src="images/portfolio/img2.png" alt="" width="100%" height="400"/></a>
-      </li>
-      <li> <a href="mergeit.php"><img src="images/portfolio/img3.png" alt="" width="100%" height="400"/></a>
-      </li>
-      <li> <a href="neonbubble.php"><img src="images/portfolio/img4.png" alt="" width="100%" height="400"/></a>
-      </li>
-        <li> <a href="fishingtrip.php"><img src="images/portfolio/img5.png" alt="" width="100%" height="400"/></a>
-      </li>
-              <li> <a href="alieninvader.php"><img src="images/portfolio/img6.png" alt="" width="100%" height="400"/></a>
-      </li>
-    </ul>
-  </div>
-  <!-- flexslider ends here --> 
-</section>
-<!-- slider ends here --> 
-<!-- info Box ==================================================
-================================================== -->
-<div class="infobox">
-  <div class="container info">
+<div class="breadcrumbs">
+  <div class="container">
     <header>
-      <h1>New Games!</h1>
-     
+      <h3>Neon Bubble</h3>
+      <p>- Neon arkanoid -</p>
     </header>
-    <hr class="separator">
   </div>
-  <!-- container ends here --> 
+  <!-- container ends here -->
+  <hr class="separator1">
 </div>
-<!-- infobox ends here --> 
-<!--Latest Photos ==================================================
+<!-- breadcrumbs ends here --> 
+<!-- Blog Single ==================================================
 ================================================== -->
-<div class="container latest">
-  <div class="one_third">
-    <figure class="shadow"><a href="mergeit.php" class="thumb"><img src="images/portfolio/a.jpg" alt="alt" /></a>
-      <figcaption> <a href="#">
-        <h3 class="heading">Merge it</h3>
-        </a>
-        <p class="bioquote">Merge stuff, or dont. We're fine with either</p>
-      </figcaption>
-    </figure>
-  </div>
-  <!-- one_third ends here -->
-  <div class="one_third">
-    <figure class="shadow"><a href="shipgame.php" class="thumb"><img src="images/portfolio/b.png" alt="alt" /></a>
-      <figcaption> <a href="#">
-        <h3 class="heading">Space Ship</h3>
-        </a>
-        <p class="bioquote">One man. One Ship. In space. </p>
-      </figcaption>
-    </figure>
-  </div>
-  <!-- one_third ends here -->
-  <div class="one_third lastcolumn">
-    <figure class="shadow"><a href="doomrunner.php" class="thumb"><img src="game/mountain.png" alt="alt" height="200" /></a>
-      <figcaption> <a href="#">
-        <h3 class="heading">Doom Runner</h3>
-        </a>
-        <p class="bioquote">Run for your life</p>
-      </figcaption>
-    </figure>
-  </div>
-  <!-- one_third ends here --> 
+<div class="container">
+  <section class="slider" align="middle">
+    <iframe src="https://cdn.htmlgames.com/NeonBubble/
+" name="game" width="800" height="500" frameborder="0" scrolling="no" text-align: center align="middle">
+            <p>Your browser does not support iframes.</p> >
+        </iframe>
+    <!-- flexslider ends here --> 
+  </section>
+  <!-- slider ends here -->
+  <hr class="separator1">
+  <div class="rating">
+
+        <div class='ratingStar'>
+            <form id="rateSubmit">
+                Rate this game:
+                <select name="ratingNumber">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <input type="hidden" name="gameName" id="gameName" value="neonBubble">
+                <button type="submit" name="submit" value="rate">RATE</button> &nbsp;
+            </form>
+        </div>
+
+        <!-- JavaScript to display the server response without having to reload the page -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+        <script>
+            $("#rateSubmit").submit(function(event) {
+                event.preventDefault(); //prevent default action 
+                var post_url = "saveRating.php"; //get form action url
+                var form_data = $(this).serialize(); //Encode form elements for submission
+
+                $.post(post_url, form_data, function(response, status) {
+                    $("#response").html(response);
+
+                }).fail(function(err, status) {
+                    $("#response").html(err);
+                });
+            });
+
+        </script>
+
+        *Facebook reply*
+        <div id="response"> </div>
+        <br />
+    </div>
+    <!-- twitter comment box -->
+    <div class="twitter_share">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Go check out this amazing game I found..." data-show-count="false">Tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+
+    <!-- facebook comment box-Ship game only -->
+    <div class="facebook">
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=2212809772366987&autoLogAppEvents=1"></script>
+        <div class="fb-comments" data-href="http://bookbarter.us/gamesfortots/shipgame.html" data-numposts="20">
+        </div>
+    </div>
 </div>
-<!-- end container --> 
-<!--Heading Box ==================================================
+<!-- container ends here --> 
+
+<!-- Socialize ==================================================
 ================================================== -->
-
-
-
-<section class="slider">
-  <div class="flexslider">
-    <ul class="slides">
-      <li> 
-        <div style="display: flex; justify-content: center;">
-          <a href="https://card.americanexpress.com/d/american-express/?utm_mcid=3569918&utm_source=google&utm_medium=cpc&utm_term=amex&utm_cmpid=1711237649&utm_adgid=69797469267&utm_tgtid=aud-434822525019:kwd-13337556&utm_mt=e&utm_adid=344057220697&utm_dvc=c&utm_ntwk=g&utm_adpos=1t1&utm_plcmnt=&utm_locphysid=9007924&utm_locintid=&utm_feeditemid=&utm_devicemdl=&utm_plcmnttgt=&utm_programname=brandtp-cm&gclid=CjwKCAjw_YPnBRBREiwAIP6TJx78AD6fmJVJr6zWeditwzjEPUN0gpEEyxKfmTd24Nf2Uk9X3lUf2BoCduQQAvD_BwE"><img src="./images/ads1.jpg" align="middle"></a></div>
-      </li>
-      <li>
-        <div style="display: flex; justify-content: center;" >
-          <a href="https://www.betonline.ag/?btag=Ll1moMBPL95xFViVLa5JkGNd7ZgqdRLk&affid=101788"><img src="./images/ads2.gif" align="middle"></a>
-      </li>
-    </ul>
-  </div>
-  <!-- flexslider ends here --> 
-</section>
 <hr class="separator2">
 <div class="socialsblock">
+  <div class="container socialize">
+   
+  </div>
   <!-- container ends here --> 
 </div>
 <!-- socialsblock ends here --> 
@@ -286,10 +306,6 @@ function getName($loginEmail)
   </div>
   <!-- container ends here --> 
 </div>
-<!-- footer ends here --> 
-<!-- Copyright ==================================================
-================================================== -->
-
 <!-- copyright ends here --> 
 <!-- End Document
 ================================================== --> 

@@ -1,33 +1,99 @@
 <?php
-
 session_start();
+$_SESSION['customerName'];
 
-$email = $_SESSION["email"];
+if (isset($_SESSION['email'])) 
+  {
+      $loginEmail = $_SESSION['email'];
+  }
+
+//$email = $_SESSION["email"];
 
 $servername = "localhost";
-$username = "root";
-$password = "";
-$db = "gamesfortotsDB";
+$username = "ajikee1";
+$password = "ranjithajith";
+$db = "gamesfortotos";
   
-dbConnection = mysqli_connect($servername, $username, $password, $db);
+$dbConnection = mysqli_connect($servername, $username, $password, $db);
  
 //get the password associated with the email
-$sql = "SELECT Age FROM customer WHERE email ='$email' LIMIT 1";
+$sql = "SELECT Age FROM customer WHERE email ='$loginEmail' LIMIT 1";
 
 $result = mysqli_query($dbConnection, $sql);
 
 while ($row = $result->fetch_assoc()) 
-			{
-    			$passFromDB   = $row['Age'];
+      {
+          $age = $row['Age'];
 
-    			if (($passFromDB < 18)) 
-    				{
-    					echo "<script>alert('You need to ba 18 or older!!');history.go(-1);</script>";
-    				}
-    			
-			}
+          if (($age < 18)) 
+            {
+              echo "<script>alert('You need to ba 18 or older!!');history.go(-1);</script>";
+            }
+          else
+          {
+            mysqli_free_result($result);
+            mysqli_close($dbConnection);
+            $customerName = getName($loginEmail); //get the users firstname and lastname using his email address
+            $nameofGame = "doomrunner";
+            insertHistory($loginEmail, $nameofGame);
+          }
+      }
 
+//function to get customers first name and last name based on his email address
+function getName($loginEmail)
+  {
+        $servername = "localhost";
+        $username = "ajikee1";
+        $password = "ranjithajith";
+        $db = "gamesfortotos";
+    
+      //set the connection
+      $dbConnection = mysqli_connect($servername, $username, $password, $db);
+    
+    
+      $stmt = "SELECT FirstName, LastName FROM customer WHERE email='$loginEmail'";
+    
+      //execute the query and assign the result
+      $result = mysqli_query($dbConnection, $stmt);
+    
+      if (mysqli_num_rows($result) > 0) 
+      {
+          while ($row = mysqli_fetch_array($result)) 
+            {
+                $_SESSION['customerName'] = $row['FirstName']. ' ' . $row['LastName'];
+            }
+        
+            mysqli_free_result($result);
+            mysqli_close($dbConnection);
+      }
+      
+      return $_SESSION['customerName'];
+  }
 
+function insertHistory($loginEmail, $gameName) 
+  {
+
+    $servername = "localhost";
+    $username = "ajikee1";
+    $password = "ranjithajith";
+    $db = "gamesfortotos";
+
+    //set the connection
+    $dbConnection = mysqli_connect($servername, $username, $password, $db);
+
+    $stmt = "INSERT INTO History(email, gameName, view) VALUES('$loginEmail', '$gameName', '1')";
+    //execute the query and assign the result
+      $result = mysqli_query($dbConnection, $stmt);
+    
+      if (mysqli_query($dbConnection, $stmt)) 
+        {
+          //echo 'Success';
+        } 
+      else
+        {
+          //echo "History not logged";
+        }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -83,15 +149,18 @@ while ($row = $result->fetch_assoc())
   <div class="container"> 
     <!-- Header | Logo, Menu
 		================================================== -->
-    <div class="logo"><a href="indexPost.php"><img src="images/logo.png" alt="" /></a></div>
+    <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" /></a></div>
     <div class="mainmenu">
       <div id="mainmenu">
         <ul class="sf-menu">
-          <li><a href="indexPost.php" id="visited">Home</a></li>
+          <li><a href="index.html" id="visited">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.html">Games</a></li>          
+          <li><a href="portfolio.html">Games</a>
+           
+          </li>          
           <li><a href="contact.html">Contact</a></li>
 		  <li><a href="logout.php">Logout</a></li>
+      <li><a href ="">Hello,  <?php echo $customerName ?></a></li>
         </ul>
       </div>
       <!-- mainmenu ends here --> 
@@ -142,7 +211,7 @@ while ($row = $result->fetch_assoc())
                     <option value="5">5</option>
                 </select>
 
-                <input type="hidden" name="gameName" id="gameName" value="DoomRunner">
+                <input type="hidden" name="gameName" id="gameName" value="ShipGame">
                 <button type="submit" name="submit" value="rate">RATE</button> &nbsp;
             </form>
         </div>
