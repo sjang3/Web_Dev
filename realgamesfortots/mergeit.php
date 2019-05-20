@@ -120,11 +120,11 @@ function insertHistory($loginEmail, $gameName)
   <div class="container"> 
     <!-- Header | Logo, Menu
 		================================================== -->
-    <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" /></a></div>
+    <div class="logo"><a href="indexPost.php"><img src="images/logo.png" alt="" /></a></div>
     <div class="mainmenu">
       <div id="mainmenu">
         <ul class="sf-menu">
-          <li><a href="indexPost.html" id="visited">Home</a></li>
+          <li><a href="indexPost.php" id="visited">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="portfolio.php">Games</a>
            
@@ -181,7 +181,7 @@ function insertHistory($loginEmail, $gameName)
                     <option value="5">5</option>
                 </select>
 
-                <input type="hidden" name="gameName" id="gameName" value="ShipGame">
+                <input type="hidden" name="gameName" id="gameName" value="mergeit">
                 <button type="submit" name="submit" value="rate">RATE</button> &nbsp;
             </form>
         </div>

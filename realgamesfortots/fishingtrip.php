@@ -126,7 +126,7 @@ function insertHistory($loginEmail, $gameName)
         <ul class="sf-menu">
           <li><a href="indexPost.php" id="visited">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.html">Games</a></li>          
+          <li><a href="portfolio.php">Games</a></li>          
           <li><a href="contact.html">Contact</a></li>
 		  <li><a href="logout.php">Logout</a></li>
         </ul>

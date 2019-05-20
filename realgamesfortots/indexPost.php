@@ -142,18 +142,93 @@ function getName($loginEmail)
 <!-- info Box ==================================================
 ================================================== -->
 <div class="infobox">
-  <div class="container info">
-    <header>
-      <h1>New Games!</h1>
-     
-    </header>
-    <hr class="separator">
-  </div>
-  <!-- container ends here --> 
+    <div class="container info">
+        <header>
+            <h1>Top Games!</h1>
+
+        </header>
+        <hr class="separator">
+    </div>
+    <!-- container ends here -->
 </div>
 <!-- infobox ends here --> 
 <!--Latest Photos ==================================================
 ================================================== -->
+
+
+
+
+
+<div class="container latest">
+    <?php
+    $email = $_SESSION['email'];
+
+    getGame($email); //get the users firstname and lastname using his email address
+    //function to get customers first name and last name based on his email address
+
+    function getGame($loginEmail)
+    {
+        $servername = "localhost";
+        $username = "ajikee1";
+        $password = "ranjithajith";
+        $db = "gamesfortotos";
+
+        //set the connection
+        $dbConnection = mysqli_connect($servername, $username, $password, $db);
+
+
+        $stmt = "SELECT gameName, image FROM gameRating ORDER BY RatingNumer DESC LIMIT 3";
+
+        //execute the query and assign the result
+        $result = mysqli_query($dbConnection, $stmt);
+        $row_counter = 0;
+        while ($row = $result->fetch_assoc()) {
+            $gameName = $row['gameName']; //password that is stored in the database
+
+            if ($row_counter != 2) {
+                echo '<div class="one_third">
+            <figure class="shadow"><a href="' . $gameName . '.php" class="thumb"><img src="images/portfolio/' . $gameName . '.jpg" alt="alt" /></a>
+            <figcaption> <a href="#">
+            <h3 class="heading">' . $gameName . '</h3>
+            </a>
+            </figcaption>
+            </figure>
+            </div>';
+                $row_counter++;
+            } else {
+                echo '<div class="one_third lastcolumn">
+            <figure class="shadow"><a href="' . $gameName . '.php" class="thumb"><img src="images/portfolio/' . $gameName . '.jpg" alt="alt" /></a>
+            <figcaption> <a href="#">
+            <h3 class="heading">' . $gameName . '</h3>
+            </a>
+            </figcaption>
+            </figure>
+            </div>';
+
+                $row_counter = 0;
+            }
+
+
+        }
+
+    }
+
+    ?>
+    <!-- one_third ends here -->
+</div>
+
+<div class="infobox">
+    <div class="container info">
+        <header>
+            <h1>New Games!</h1>
+
+        </header>
+        <hr class="separator">
+    </div>
+    <!-- container ends here -->
+</div>
+
+
 <div class="container latest">
   <div class="one_third">
     <figure class="shadow"><a href="mergeit.php" class="thumb"><img src="images/portfolio/a.jpg" alt="alt" /></a>

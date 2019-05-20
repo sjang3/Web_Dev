@@ -212,7 +212,7 @@ function insertHistory($loginEmail, $gameName)
                     <option value="5">5</option>
                 </select>
 
-                <input type="hidden" name="gameName" id="gameName" value="ShipGame">
+                <input type="hidden" name="gameName" id="gameName" value="shipgame">
                 <button type="submit" name="submit" value="rate">RATE</button> &nbsp;
             </form>
         </div>

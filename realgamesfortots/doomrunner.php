@@ -155,7 +155,7 @@ function insertHistory($loginEmail, $gameName)
         <ul class="sf-menu">
           <li><a href="index.html" id="visited">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.html">Games</a>
+          <li><a href="portfolio.php">Games</a>
            
           </li>          
           <li><a href="contact.html">Contact</a></li>
@@ -178,7 +178,7 @@ function insertHistory($loginEmail, $gameName)
 <div class="breadcrumbs">
   <div class="container">
     <header>
-      <h3>Doom Runer</h3>
+      <h3>Doom Runner</h3>
       <p> Run for your life </p>
     </header>
   </div>
@@ -211,7 +211,7 @@ function insertHistory($loginEmail, $gameName)
                     <option value="5">5</option>
                 </select>
 
-                <input type="hidden" name="gameName" id="gameName" value="ShipGame">
+                <input type="hidden" name="gameName" id="gameName" value="doomrunner">
                 <button type="submit" name="submit" value="rate">RATE</button> &nbsp;
             </form>
         </div>
