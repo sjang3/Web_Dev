@@ -113,6 +113,7 @@
 
 <div class="registration">
         <form id="userRegisteration">
+            <br>
             <!--User FirstName -->
             <label for="FirstName">First Name: </label>
             <input type="text" size="40" name="FirstName">
