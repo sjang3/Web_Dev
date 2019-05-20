@@ -21,26 +21,16 @@ function getName($loginEmail)
     	$dbConnection = mysqli_connect($servername, $username, $password, $db);
     
     
-    	$stmt = "SELECT FirstName, LastName FROM customer WHERE email='$loginEmail'";
+    	$stmt = "SELECT gameName FROM gameRating ORDER BY ratingNumer;"
     
     	//execute the query and assign the result
     	$result = mysqli_query($dbConnection, $stmt);
     
-    	if (mysqli_num_rows($result) > 0) 
-    	{
-        	while ($row = mysqli_fetch_array($result)) 
-        		{
-            		$_SESSION['customerName'] = $row['FirstName']. ' ' . $row['LastName'];
-        		}
-        
-        		mysqli_free_result($result);
-        		mysqli_close($dbConnection);
-    	}
+    	echo $result;
     	
     	return $_SESSION['customerName'];
 	}
 ?>
-
 
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
@@ -56,7 +46,7 @@ function getName($loginEmail)
 
 <meta charset="utf-8">
 <title>Gamefortots.com</title>
-<meta name="description" content="Place to put your description text">
+<meta name="description" content="Game for tots">
 <meta name="author" content="">
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -100,13 +90,14 @@ function getName($loginEmail)
       <div id="mainmenu">
         <ul class="sf-menu">
           <li><a href="indexPost.php" id="visited">Home</a></li>
-          <li><a href="about.html">About</a></li>     
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.php">Games</a>
+          </li>          
           <li><a href="contact.html">Contact</a></li>
-		  <li><a href="index.html">Logout</a></li>
+		  <li><a href="index.html">LogOut</a></li> <!-- this is linked -->
 		  <li><a href ="">Hello,  <?php echo $customerName ?></a></li>
         </ul>
-        
-      </div>
+    </div>
       <!-- mainmenu ends here --> 
       
       <!-- Responsive Menu -->
@@ -117,91 +108,90 @@ function getName($loginEmail)
   <!-- container ends here --> 
 </div>
 <!-- header ends here --> 
-<!--Breadcrumbs ==================================================
+<!-- Slider ==================================================
 ================================================== -->
-<div class="breadcrumbs">
-  <div class="container">
+<section class="slider">
+  <div class="flexslider">
+    <ul class="slides">
+      <li> <a href="#"><img src="images/flexslider/1.gif" alt="" width="100%" height="400"/></a>
+      </li>
+      <li> <img src="images/flexslider/2.gif" alt="" width="100%" height="400"/>
+      </li>
+    </ul>
+  </div>
+  <!-- flexslider ends here --> 
+</section>
+<!-- slider ends here --> 
+<!-- info Box ==================================================
+================================================== -->
+<div class="infobox">
+  <div class="container info">
     <header>
-      <h3>OUR GAMES</h3>
+      <h1>New Games!</h1>
      
     </header>
+    <hr class="separator">
   </div>
-  <!-- container ends here -->
-  <hr class="separator1">
+  <!-- container ends here --> 
 </div>
-<!-- breadcrumbs ends here --> 
-<!-- Portfolio ==================================================
+<!-- infobox ends here --> 
+<!--Latest Photos ==================================================
 ================================================== -->
-<div class="container portfolio">
-  <div class="one_third shadow">
-    <div class="view view-first"> <img src="images/portfolio/a.jpg" alt="" />
-      <div class="mask">
-        <h2><a href="mergeit.html">Merge IT</a></h2>
-      </div>
-      <!-- mask ends here --> 
-    </div>
-    <!-- view ends here --> 
+<div class="container latest">
+  <div class="one_third">
+    <figure class="shadow"><a href="mergeit.html" class="thumb"><img src="images/portfolio/a.jpg" alt="alt" /></a>
+      <figcaption> <a href="#">
+        <h3 class="heading">Merge it</h3>
+        </a>
+        <p class="bioquote">Merge stuff, or dont. We're fine with either</p>
+      </figcaption>
+    </figure>
   </div>
-  <!--end one_third-->
-  <div class="one_third shadow">
-    <div class="view view-first"> <img src="images/portfolio/b.png" alt="" />
-      <div class="mask">
-        <h2><a href="shipgame.html">Ship Game</a></h2>
-      </div>
-      <!-- mask ends here --> 
-    </div>
-    <!-- view ends here --> 
+  <!-- one_third ends here -->
+  <div class="one_third">
+    <figure class="shadow"><a href="shipgame.html" class="thumb"><img src="images/portfolio/b.png" alt="alt" /></a>
+      <figcaption> <a href="#">
+        <h3 class="heading">Space Ship</h3>
+        </a>
+        <p class="bioquote">One man. One Ship. In space. </p>
+      </figcaption>
+    </figure>
   </div>
-  <!--end one_third-->
-  <div class="one_third lastcolumn shadow">
-    <div class="view view-first"> <img src="game/mountain.png" alt="" />
-      <div class="mask">
-        <h2><a href="doomrunner.html">Doom Runner</a></h2>
-      </div>
-      <!-- mask ends here --> 
-    </div>
-    <!-- view ends here --> 
+  <!-- one_third ends here -->
+  <div class="one_third lastcolumn">
+    <figure class="shadow"><a href="doomrunner.html" class="thumb"><img src="game/mountain.png" alt="alt" height="200" /></a>
+      <figcaption> <a href="#">
+        <h3 class="heading">Doom Runner</h3>
+        </a>
+        <p class="bioquote">Run for your life</p>
+      </figcaption>
+    </figure>
   </div>
-  <!--end one_third-->
-  <div class="one_third shadow">
-    <div class="view view-first"> <img src="images/portfolio/neonbubble.jpg" alt="" />
-      <div class="mask">
-        <h2><a href="neonbubble.html">Neon Bubble</a></h2>
-      </div>
-      <!-- mask ends here --> 
-    </div>
-    <!-- view ends here --> 
-  </div>
-  <!--end one_third-->
-  <div class="one_third shadow">
-    <div class="view view-first"> <img src="images/portfolio/fishingtrip.jpg" alt="" />
-      <div class="mask">
-        <h2><a href="fishingtrip.html">Fishing Trip</a></h2>
-      </div>
-      <!-- mask ends here --> 
-    </div>
-    <!-- view ends here --> 
-  </div>
-  <!--end one_third-->
-  <div class="one_third lastcolumn shadow">
-    <div class="view view-first"> <img src="images/portfolio/alieninvader.jpg" alt="" />
-      <div class="mask">
-        <h2><a href="alieninvader.html">Alien Invader</a></h2>
-      </div>
-      <!-- mask ends here --> 
-    </div>
-    <!-- view ends here --> 
-  </div>
-  <!--end one_third-->
+  <!-- one_third ends here --> 
 </div>
-<!-- container ends here --> 
-<!-- Socialize ==================================================
+<!-- end container --> 
+<!--Heading Box ==================================================
 ================================================== -->
+
+
+
+<section class="slider">
+  <div class="flexslider">
+    <ul class="slides">
+      <li> 
+        <div style="display: flex; justify-content: center;">
+          <a href="https://card.americanexpress.com/d/american-express/?utm_mcid=3569918&utm_source=google&utm_medium=cpc&utm_term=amex&utm_cmpid=1711237649&utm_adgid=69797469267&utm_tgtid=aud-434822525019:kwd-13337556&utm_mt=e&utm_adid=344057220697&utm_dvc=c&utm_ntwk=g&utm_adpos=1t1&utm_plcmnt=&utm_locphysid=9007924&utm_locintid=&utm_feeditemid=&utm_devicemdl=&utm_plcmnttgt=&utm_programname=brandtp-cm&gclid=CjwKCAjw_YPnBRBREiwAIP6TJx78AD6fmJVJr6zWeditwzjEPUN0gpEEyxKfmTd24Nf2Uk9X3lUf2BoCduQQAvD_BwE"><img src="./images/ads1.jpg" align="middle"></a></div>
+      </li>
+      <li>
+        <div style="display: flex; justify-content: center;" >
+          <a href="https://www.betonline.ag/?btag=Ll1moMBPL95xFViVLa5JkGNd7ZgqdRLk&affid=101788"><img src="./images/ads2.gif" align="middle"></a>
+      </li>
+    </ul>
+  </div>
+  <!-- flexslider ends here --> 
+</section>
 <hr class="separator2">
 <div class="socialsblock">
-  <div class="container socialize">
-   
-  </div>
   <!-- container ends here --> 
 </div>
 <!-- socialsblock ends here --> 
@@ -275,10 +265,14 @@ function getName($loginEmail)
 ================================================== -->
 <div id="copyright">
   <div class="container">
-    <p class="copyright">&copy; Copyright 2013. &quot;Freebix&quot; by <a href="http://www.anarieldesign.com/" rel="nofollow">Anariel Design</a>. All rights reserved.</p>
+    <p class="copyright">&copy; Copyright 2019. &quot;Gamefortots&quot; by <a href="http://www.anarieldesign.com/" rel="nofollow">Team 3</a>. All rights reserved.</p>
   </div>
   <!-- container ends here --> 
 </div>
+<!-- footer ends here --> 
+<!-- Copyright ==================================================
+================================================== -->
+
 <!-- copyright ends here --> 
 <!-- End Document
 ================================================== --> 

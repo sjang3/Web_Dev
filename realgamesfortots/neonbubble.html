@@ -55,11 +55,9 @@
     <div class="mainmenu">
       <div id="mainmenu">
         <ul class="sf-menu">
-          <li><a href="index.html" id="visited">Home</a></li>
+          <li><a href="indexPost.php" id="visited">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.html">Games</a>
-           
-          </li>          
+          <li><a href="portfolio.html">Games</a></li>          
           <li><a href="contact.html">Contact</a></li>
 		  <li><a href="logout.php">Logout</a></li>
         </ul>
@@ -112,7 +110,7 @@
                     <option value="5">5</option>
                 </select>
 
-                <input type="hidden" name="gameName" id="gameName" value="ShipGame">
+                <input type="hidden" name="gameName" id="gameName" value="neonBubble">
                 <button type="submit" name="submit" value="rate">RATE</button> &nbsp;
             </form>
         </div>
@@ -138,6 +136,19 @@
         *Facebook reply*
         <div id="response"> </div>
         <br />
+    </div>
+    <!-- twitter comment box -->
+    <div class="twitter_share">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Go check out this amazing game I found..." data-show-count="false">Tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+
+    <!-- facebook comment box-Ship game only -->
+    <div class="facebook">
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=2212809772366987&autoLogAppEvents=1"></script>
+        <div class="fb-comments" data-href="http://bookbarter.us/gamesfortots/shipgame.html" data-numposts="20">
+        </div>
     </div>
 </div>
 <!-- container ends here --> 

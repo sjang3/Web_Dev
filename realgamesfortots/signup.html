@@ -43,7 +43,7 @@
 ================================================== -->
 <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 </head>
-<body> 
+<body>
 
 <!--Content Part ==================================================
 ================================================== -->
@@ -51,15 +51,17 @@
   <div class="container"> 
     <!-- Header | Logo, Menu
 		================================================== -->
-    <div class="logo"><a href="indexPost.php"><img src="images/logo.png" alt="" /></a></div>
+    <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" /></a></div>
     <div class="mainmenu">
       <div id="mainmenu">
         <ul class="sf-menu">
-          <li><a href="indexPost.php" id="visited">Home</a></li>
+          <li><a href="index.html" id="visited">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.html">Games</a></li>          
+          <li><a href="portfolio.html">Games</a>
+            
+          </li>          
           <li><a href="contact.html">Contact</a></li>
-		  <li><a href="logout.php">Logout</a></li>
+		  <li><a href="login.html">Login</a></li>
         </ul>
       </div>
       <!-- mainmenu ends here --> 
@@ -77,91 +79,109 @@
 <div class="breadcrumbs">
   <div class="container">
     <header>
-      <h3>Doom Runer</h3>
-      <p> Run for your life </p>
+      <h3>Sign up to be our member</h3>
+     
     </header>
   </div>
   <!-- container ends here -->
   <hr class="separator1">
 </div>
 <!-- breadcrumbs ends here --> 
-<!-- Blog Single ==================================================
+<!-- Contact Content Part - GoogleMap ==================================================
 ================================================== -->
-<div class="container">
-  <section class="slider" align="middle">
-    <iframe src="game/index.html"
-" name="game" width="800" height="600" frameborder="0" scrolling="no" text-align: center align="middle">
-            <p>Your browser does not support iframes.</p> >
-        </iframe>
-    <!-- flexslider ends here --> 
-  </section>
-  <!-- slider ends here -->
-  <hr class="separator1">
-  <div class="rating">
 
-        <div class='ratingStar'>
-            <form id="rateSubmit">
-                Rate this game:
-                <select name="ratingNumber">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
 
-                <input type="hidden" name="gameName" id="gameName" value="DoomRunner">
-                <button type="submit" name="submit" value="rate">RATE</button> &nbsp;
-            </form>
-        </div>
+<!-- Contact Content Part - Contact Form ==================================================
+================================================== --><form action="process.php" method="post" id="contact_form">
+<div class="container contact"> 
+  <!-- Contact Sidebar ==================================================
+================================================== -->
+  <div class="one_third">
+    
+    
+  </div>
+  <!-- one_third ends here -->
+    
+    <div class="registration">
+        <form id="userRegisteration">
+            <br>
+            <!--User FirstName -->
+            <label for="FirstName">First Name: </label>
+            <input type="text" size="40" name="FirstName">
+            <br>
+            <!--User LastName -->
+            <label for="LastName">Last Name: </label>
+            <input type="text" size="40" name="LastName">
+            <br>
+            <!--User Age -->
+            <label for="Age">Age: </label>
+            <input type="text" size="40" name="Age">
+            <br>
+            <!--User Email -->
+            <label for="email">Email: </label>
+            <input type="text" size="40" class="emailBox" name="email">
+            <br>
+            <!--User Password -->
+            <label for="passwordField">Password (8 characters minimum): </label>
+            <input name="passwordField" required="" type="password">
+            <br>
+            <!--User Phone Number -->
+            <label for="phoneNumber">Phone Number: </label>
+            <input type="text" name="phoneNumber">
+            <br>
+            <button type="submit" class="submit" value="REGISTER">REGISTER</button> &nbsp;
+
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+            <div class="container signin">
+                <p>Already have an account? <a href="login.php">Sign in</a>.</p>
+            </div>
+        </form>
+
+
+        <!--print the response of the server registeration inside the div-->
+        <br />
+        <div class="return" id="registerationStatus"> </div>
 
         <!-- JavaScript to display the server response without having to reload the page -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
         <script>
-            $("#rateSubmit").submit(function(event) {
+            $("#userRegisteration").submit(function(event) {
                 event.preventDefault(); //prevent default action 
-                var post_url = "saveRating.php"; //get form action url
+                var post_url = "registerationCustomer.php"; //get form action url
                 var form_data = $(this).serialize(); //Encode form elements for submission
 
                 $.post(post_url, form_data, function(response, status) {
-                    $("#response").html(response);
-
+                    //	$("#loginStatus").html( response );	
+                    var result = $.trim(response);
+                    var myVar = "Registeration success. Redirecting to home page in 5 seconds...";
+                    if (result === "Success") {
+                        $("#registerationStatus").html(myVar);
+                        setTimeout(function() {
+                            window.location.href = "portfolio.php";
+                        }, 5000); //if login is success, wait 5 seconds, then open the post login page
+                    } else {
+                        $("#registerationStatus").html(response); //If login is failure, display login failure in the login page
+                    }
+                    //setTimeout(function() { window.location.href = "homePostLogin.php"; }, 5000); 
                 }).fail(function(err, status) {
-                    $("#response").html(err);
+                    $("#registerationStatus").html(err);
                 });
             });
 
         </script>
-
-        <div id="response"> </div>
-        <br />
     </div>
     
-     <!-- twitter comment box -->
-    <div class="twitter_share">
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Go check out this amazing game I found..." data-show-count="false">Tweet</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
 
-    <!-- facebook comment box-Ship game only -->
-    <div class="facebook">
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=2212809772366987&autoLogAppEvents=1"></script>
-        <div class="fb-comments" data-href="http://bookbarter.us/gamesfortots/shipgame.html" data-numposts="20">
-        </div>
-    </div>
+    <!-- end contactForm --> 
+  </div>
+	
 </div>
-<!-- container ends here --> 
+<div class="blankSeparator"></div>
 
 <!-- Socialize ==================================================
 ================================================== -->
 <hr class="separator2">
-<div class="socialsblock">
-  <div class="container socialize">
-    
-  </div>
-  <!-- container ends here --> 
-</div>
 <!-- socialsblock ends here --> 
 <!-- Footer ==================================================
 ================================================== -->

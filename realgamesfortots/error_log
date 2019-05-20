@@ -235,3 +235,36 @@ Stack trace:
 [19-May-2019 22:26:39 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 3
 [19-May-2019 22:26:39 UTC] PHP Notice:  Undefined variable: loginEmail in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 10
 [19-May-2019 22:26:39 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 40
+[19-May-2019 22:43:25 UTC] PHP Warning:  include(header.php): failed to open stream: No such file or directory in /home/t48jldpcoq9i/public_html/gamesfortots/registration.php on line 4
+[19-May-2019 22:43:25 UTC] PHP Warning:  include(): Failed opening 'header.php' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/t48jldpcoq9i/public_html/gamesfortots/registration.php on line 4
+[19-May-2019 23:09:01 UTC] PHP Warning:  include(header.php): failed to open stream: No such file or directory in /home/t48jldpcoq9i/public_html/gamesfortots/registration.php on line 4
+[19-May-2019 23:09:01 UTC] PHP Warning:  include(): Failed opening 'header.php' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/t48jldpcoq9i/public_html/gamesfortots/registration.php on line 4
+[19-May-2019 23:12:47 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 3
+[19-May-2019 23:12:47 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 40
+[19-May-2019 23:12:57 UTC] PHP Warning:  include(header.php): failed to open stream: No such file or directory in /home/t48jldpcoq9i/public_html/gamesfortots/registration.php on line 4
+[19-May-2019 23:12:57 UTC] PHP Warning:  include(): Failed opening 'header.php' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/t48jldpcoq9i/public_html/gamesfortots/registration.php on line 4
+[19-May-2019 23:13:00 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 3
+[19-May-2019 23:13:00 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 40
+[19-May-2019 23:13:05 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 3
+[19-May-2019 23:13:05 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 40
+[19-May-2019 23:13:12 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 3
+[19-May-2019 23:13:12 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 40
+[19-May-2019 23:21:24 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 3
+[19-May-2019 23:21:24 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 40
+[19-May-2019 23:21:26 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 3
+[19-May-2019 23:21:26 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 40
+[19-May-2019 23:21:31 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 3
+[19-May-2019 23:21:31 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 40
+[20-May-2019 00:18:31 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 3
+[20-May-2019 00:26:28 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 3
+[20-May-2019 00:26:28 UTC] PHP Notice:  Undefined variable: loginEmail in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 10
+[20-May-2019 00:26:28 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 40
+[20-May-2019 00:26:31 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 3
+[20-May-2019 00:26:31 UTC] PHP Notice:  Undefined variable: loginEmail in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 10
+[20-May-2019 00:26:31 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/indexPost.php on line 40
+[20-May-2019 00:27:26 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 3
+[20-May-2019 00:27:26 UTC] PHP Notice:  Undefined variable: loginEmail in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 10
+[20-May-2019 00:27:26 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/portfolio.php on line 40
+[20-May-2019 00:42:03 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/joshtest.php on line 3
+[20-May-2019 00:42:03 UTC] PHP Notice:  Undefined variable: loginEmail in /home/t48jldpcoq9i/public_html/gamesfortots/joshtest.php on line 10
+[20-May-2019 00:42:03 UTC] PHP Notice:  Undefined index: customerName in /home/t48jldpcoq9i/public_html/gamesfortots/joshtest.php on line 40
